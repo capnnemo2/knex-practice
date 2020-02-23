@@ -8,13 +8,29 @@ const knexInstance = knex({
 
 console.log("knex and driver installed correctly");
 
-const q1 = knexInstance("amazong_products")
-  .select("*")
-  .toQuery();
-const q2 = knexInstance
-  .from("amazong_products")
-  .select("*")
-  .toQuery();
+// knexInstance("amazong_products")
+//   .select("*")
+//   .then(result => {
+//     console.log(result);
+//   });
 
-console.log("q1:", q1);
-console.log("q2:", q2);
+// knexInstance
+//   .select("product_id", "name", "price", "category")
+//   .from("amazong_products")
+//   .where({ name: "Point of view gun" })
+//   .first()
+//   .then(result => {
+//     console.log(result);
+//   });
+
+function searchByProductName(searchTerm) {
+  knexInstance
+    .select("product_id", "name", "price", "category")
+    .from("amazong_products")
+    .where("name", "ILIKE", `%${searchTerm}%`)
+    .then(result => {
+      console.log(result);
+    });
+}
+
+searchByProductName("holo");
