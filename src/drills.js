@@ -8,12 +8,6 @@ const knexInstance = knex({
 
 console.log("all is well");
 
-// knexInstance("shopping_list")
-//   .select("*")
-//   .then(result => {
-//     console.log(result);
-//   });
-
 function findName(searchTerm) {
   knexInstance
     .from("shopping_list")
