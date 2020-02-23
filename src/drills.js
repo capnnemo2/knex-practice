@@ -62,6 +62,7 @@ function totalCostPerCategory() {
     .from("shopping_list")
     .select("category")
     .groupBy("category")
+    .sum("price as total")
     .then(result => {
       console.log(result);
     });
