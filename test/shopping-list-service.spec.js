@@ -7,7 +7,7 @@ describe(`shopping list service object`, function() {
     {
       id: 1,
       name: "Banana Bread Boat",
-      price: 23.22,
+      price: "23.22",
       category: "Breakfast",
       checked: false,
       date_added: new Date("2029-01-22T16:28:32.615Z")
@@ -15,7 +15,7 @@ describe(`shopping list service object`, function() {
     {
       id: 2,
       name: "Chocolate Coughdrops",
-      price: 52.11,
+      price: "52.11",
       category: "Snack",
       checked: false,
       date_added: new Date("2100-05-22T16:28:32.615Z")
@@ -23,7 +23,7 @@ describe(`shopping list service object`, function() {
     {
       id: 3,
       name: "Everflavor Beans",
-      price: 89.45,
+      price: "89.45",
       category: "Lunch",
       checked: false,
       date_added: new Date("1919-12-22T16:28:32.615Z")
@@ -53,13 +53,13 @@ describe(`shopping list service object`, function() {
         checked: false
       }));
       return shoppingListService.getAllItems(db).then(actual => {
-        expectedList(actual).to.eql(expectedList);
+        expect(actual).to.eql(expectedList);
       });
     });
 
     it(`getById() resolves an item by id from 'shopping_list' table`, () => {
       const idToGet = 3;
-      const thirdItem = testItems[idToGet - 1];
+      const thirdItem = testList[idToGet - 1];
       return shoppingListService.getById(db, idToGet).then(actual => {
         expect(actual).to.eql({
           id: idToGet,
@@ -92,7 +92,7 @@ describe(`shopping list service object`, function() {
       const idOfItemToUpdate = 3;
       const newItemData = {
         name: "updated title",
-        price: 34.34,
+        price: "34.34",
         date_added: new Date(),
         checked: true
       };
@@ -120,7 +120,7 @@ describe(`shopping list service object`, function() {
     it(`insertItem() inserts an item and resolves it with an 'id'`, () => {
       const newItem = {
         name: "Test new name",
-        price: 55.55,
+        price: "55.55",
         date_added: new Date("2020-01-01T00:00:00.000Z"),
         checked: true,
         category: "Lunch"
